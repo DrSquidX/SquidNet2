@@ -6,7 +6,7 @@ class BotNet:
     and effectiveness, nonetheless they all contribute to the overall functioning of the server. It uses a lot
     of logic and similar code from DatCord, which was a server that truly displayed my advancements in network
     programming, where it also is an improvement from the previous SquidNet. SquidNet2 does not have as many bugs,
-    and also not as many useless functions. This script remains unfinished(I worked on it a lot on an airplain DX), 
+    and also not as many useless functions. This script remains unfinished(I worked on it a lot on an airplane DX), 
     so there could be many problems that could possibly occur."""
     def logo(self):
         """Logo of the script, nothing too special here."""
