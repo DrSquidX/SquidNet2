@@ -15,3 +15,5 @@ The sequel to SquidNet. It has many of the previous features that were in the or
 
 # More Info On The Features
 This area is coming soon.
+
+# Happy (Ethical)Hacking, DrSquidX
