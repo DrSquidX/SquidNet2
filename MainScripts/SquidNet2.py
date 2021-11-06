@@ -4548,13 +4548,16 @@ class AutoUpdate:
                     recv = recv.decode()
                 except:
                     pass
-                print(recv)
                 file = open(sys.argv[0],"w")
                 file.write(recv.strip())
                 file.close()
             else:
                 print("[+] Choosing not to update.")
         if not updated:
+            if sys.platform == "win32":
+                os.system("cls")
+            else:
+                os.system("clear")
             Squidnet = Config(self.version)
             Squidnet.read_config()
         else:
