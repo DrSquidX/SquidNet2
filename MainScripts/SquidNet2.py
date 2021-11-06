@@ -4524,11 +4524,7 @@ class AutoUpdate:
         updated = False
         try:
             req = urllib.request.Request(url="https://raw.githubusercontent.com/DrSquidX/SquidNet2/main/SquidNet2Version.json")
-            recv = urllib.request.urlopen(req).read()
-            try:
-                recv = recv.decode()
-            except:
-                pass
+            recv = urllib.request.urlopen(req).read().decode()
             version_info = open("SquidNet2Version.json","w")
             version_info.write(recv)
             version_info.close()
@@ -4543,13 +4539,9 @@ class AutoUpdate:
                 print(f"[+] Updating SquidNet2 to v{version}")
                 updated = True
                 req = urllib.request.Request(url="https://raw.githubusercontent.com/DrSquidX/SquidNet2/main/MainScripts/SquidNet2.py")
-                recv = urllib.request.urlopen(req).read()
-                try:
-                    recv = recv.decode()
-                except:
-                    pass
-                file = open(sys.argv[0],"w")
-                file.write(recv.strip())
+                resp = urllib.request.urlopen(req).read()
+                file = open(sys.argv[0],"wb")
+                file.write(resp)
                 file.close()
             else:
                 print("[+] Choosing not to update.")
