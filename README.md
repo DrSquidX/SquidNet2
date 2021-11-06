@@ -299,9 +299,43 @@ LOGGED KEYSTROKES FOR BOT DESKTOP-M0LGMU92
 ```
 
 # Logging 
-(Coming soon)
+Everything in this server is logged. This includes every connection, message and error in the server will be logged. There is a log file in the server, that can be accessed whenever needed. You are able to see any of the issues or errors that the server is encountering. It also allows you to send me any errors in the server that could be identified and debugged. Additionally, you can see the log live, as almost everything logged is also displayed on the server script.
+
+Sample of Server Logging:
+```
+[(2021-11-06 20:32:08.271470)][(INFO)]: Server Started on 192.168.0.87:8080
+[(2021-11-06 20:32:08.271470)][(INFO)]: Bots/Admins will connect to: 192.168.0.87:8080
+[(2021-11-06 20:32:08.271470)][(INFO)]: Payload Bot Script Generated in C:\Users\pfang\Desktop\SquidNet2\SquidNetServer\SquidBot.py
+[(2021-11-06 20:32:08.284802)][(SERVER)]: Payload file has been transferred to the FTP directory(for extraction of Admin).
+[(2021-11-06 20:32:08.291071)][(LISTEN)]: Server is listening.....
+[(2021-11-06 20:32:09.307653)][(ANTI_DDOS)]: Setting 'self.auto_ban' variable to: False
+[(2021-11-06 20:32:45.839599)][(INFO)]: A new admin session has been created.
+[(2021-11-06 20:32:45.840362)][(SERVER)--->(admin)]: Successfully logged into the Botnet. You have access to all of the bots.
+[(2021-11-06 20:32:45.846462)][(SERVER)--->(admin)]: Input '!help' if you need more info on the commands.
+[(2021-11-06 20:32:45.852564)][(admin)]: Attempting to log into the Admin Account.
+[(2021-11-06 20:32:51.089415)][(SERVER)--->(admin)]: Sent the help message.
+[(2021-11-06 22:35:16.298690)][(ERROR)]: Closing connection with admin due to error: [WinError 10054] An existing connection was forcibly closed by the remote host
+[(2021-11-06 22:35:16.312652)][(INFO)]: The admin has left the Botnet.
+```
 
 # Focusing Connections
+This allows you to take control of a single bot, if you have multiple bots connected to the Botnet. You can select the bot that you want to only see command output from(providing the name of the bot), and you would then be able to send messages to that specific bot. You will be able to extract files from that bot, and then be able to obtain them remotely. You could also simply enter the commands you want only to run on the selected bot, whether it be the Ransomware script or really any of them at all.
+
+Instructions Sending from 2 Bots to Only 1:
+```
+[+] Enter your msg: echo hello
+[(DESKTOP-BVT29KJ4)]: hello
+[(DESKTOP-M0LGMU95)]: hello
+[+] Enter your msg: !focusconn DESKTOP-BVT29KJ4
+[(SERVER)]: You can now only see output from bot DESKTOP-BVT29KJ4.
+[+] Enter your msg: echo hello
+[(DESKTOP-BVT29KJ4)]: hello
+```
+
+# How to Use(For beginners)
 (Coming soon)
+
+# Overall
+SquidNet2 is the sequel and superior version of the original SquidNet. While without some of the original commands, the functions and functionality of the new SquidNet have been improved on along with the new features added to it that help with its usability. 
 
 # Happy (Ethical)Hacking, DrSquidX
