@@ -53,6 +53,7 @@ class BotNet:
                                  -__-
                                 /    \\
 Advanced Botnet By DrSquid
+[+] Github: https://github.com/DrSquidX
         """
         return logo
     def __init__(self, ip, port, version, external_ip=None, external_port=None, admin_user="admin", admin_pass="adminpassword12345", logfile="log.txt", enc_key=b'iC0g4NM4xy5JrIbRV-8cZSVgFfQioUX8eTVGYRhWlF8=', ftp_dir="Bot_Files", ransomware_active=True):
