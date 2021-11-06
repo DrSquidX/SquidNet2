@@ -55,10 +55,10 @@ If there are any damages done by this script and are not caused by me directly, 
 * Config File               - It is rather inconvinient to constantly have to enter the information with option parsing, so instead a config file can save you from all of that trouble.
 * Ransomware in bots        - A ransomware script(basically an upgraded RansomSquid Script) is inside of the bots, where it will be activated on command.
 * Keylogging                - The ability of keystroke logging is in the bot script, and can be activated or deactivated at will.
-* More Optimised            - The script is more optimized, so that it is less likely to slow down or accumalate errors like the original.
-* Logic From DatCord        - A lot of the functions use the same logic from DatCord, so that the script is as optimized and efficient as it can be.
 * Logging                   - Everything on the server is logged(except for the passwords), including errors and connections.
 * Focusing Connections      - Focus on one bot at a time, if that is needed.
+* More Optimised            - The script is more optimized, so that it is less likely to slow down or accumalate errors like the original.
+* Logic From DatCord        - A lot of the functions use the same logic from DatCord, so that the script is as optimized and efficient as it can be.
 
 # Remote Access Connection
 This BotNet has remote access capabilites, so that Bots are able to connect to the server and be remotely controlled there. There, many of the built-in commands that the Bot script has can be run remotely. Shell commands can also be run remotely, where you simply have to input the command you want to use and it will be run on the bots. There are many things that you could do on the bots, where one of them include the ability to do DDoS Attacks. Similarly to the original SquidNet script, you can do UDP, TCP and HTTP DDoS Attacks. These will not be explained here, although in a different section they will. The SSH Botnet is not on this script, as there were many internal problems that slowed down the script if an SSH Bot were to disconnect, so I chose only to revolve around the main part of it. There are however many other functions and commands that can be run on the bots, where the possibilites are endless.
@@ -201,16 +201,102 @@ ransomware_active = f
 ```
 
 # Ransomware in the Bots
-(Coming soon)
+There is a ransomware payload inside of the bot scripts. This can be activated at any time, but of course on command. This is so that the owner of the bot computer would not know if they have been hacked or not, rather the payload would be used only if it is needed. The ransomware script uses the same encryption key(specified in the config file), and will use that to encrypt its files. What the payload will do is encrypt all of the victim's personal files, so that they cannot be accessed properly. There is of course a way to reverse it, as in the %USERPROFILE%(This is for windows, although other devices it is '/') directory, where there is a key file that can be accessed, and the actual encryption key can be placed inside of there. The bot script constantly checks whether the correct encryption key is in there or not, and if it is it will decrypt any of the encrypted files.
+
+Non-Encrypted File:
+```
+We're no strangers to love
+You know the rules and so do I
+A full commitment's what I'm thinking of
+You wouldn't get this from any other guy
+I just wanna tell you how I'm feeling
+Gotta make you understand
+Never gonna give you up
+Never gonna let you down
+Never gonna run around and desert you
+Never gonna make you cry
+Never gonna say goodbye
+Never gonna tell a lie and hurt you
+We've known each other for so long
+Your heart's been aching but you're too shy to say it
+Inside we both know what's been going on
+We know the game and we're gonna play it
+And if you ask me how I'm feeling
+Don't tell me you're too blind to see
+Never gonna give you up
+Never gonna let you down
+Never gonna run around and desert you
+Never gonna make you cry
+Never gonna say goodbye
+Never gonna tell a lie and hurt you
+Never gonna give you up
+Never gonna let you down
+Never gonna run around and desert you
+Never gonna make you cry
+Never gonna say goodbye
+Never gonna tell a lie and hurt you
+Never gonna give, never gonna give
+(Give you up)
+We've known each other for so long
+Your heart's been aching but you're too shy to say it
+Inside we both know what's been going on
+We know the game and we're gonna play it
+I just wanna tell you how I'm feeling
+Gotta make you understand
+Never gonna give you up
+Never gonna let you down
+Never gonna run around and desert you
+Never gonna make you cry
+Never gonna say goodbye
+Never gonna tell a lie and hurt you
+Never gonna give you up
+Never gonna let you down
+Never gonna run around and desert you
+Never gonna make you cry
+Never gonna say goodbye
+Never gonna tell a lie and hurt you
+Never gonna give you up
+Never gonna let you down
+Never gonna run around and desert you
+Never gonna make you cry
+Never gonna say goodbye
+```
+Encrypted File:
+```
+gAAAAABhhty5_0NNHt8_3DoW_3qdYH93yew1fjlUD1K50GjRfGoQkwm1ZSBco1DrCPnmJXMc8Ojq6gqwisMGHVfcYS-AYsuYpKvNNz008-IwJUmNo0IP6GMnb4eH2UsqZ8dqCZ9_3DVNojdUt_A3lnI21P7reF75BAR18M3ed7_1ehyZPxxdxuMchsvzvmuZw6V1BKlsx6Jd9JyNar-MvE1_uzjOEDV_gpGIJ_P1pTOPmEOD5WOUAKGIcMWW0XHYMeGag2dmiznqOhg5pDJ_R-ZV9MzBnBNniefD3LhLLDJ-d-ipFGrk0IpeU2uPHPGJRmzrPyg_xHko9fOs3OfcIzpZ1fgLq1m-sfg-bTJSoBPhx1Z5qEjRA7gnZOK6aJp_vIECffbeev36nf2pc8bD7BqaWYUTX6BHz7k4it2CPoAsqh4osAvhrI_2kq2Pw2r5rdFsGqGc-q-UBgk1hHe46TkX0jqgC_VWM9ZTSinivan0mXdmgwp6ghfTHt-7BfebCWMwDOj6p93wfyIzM5HqSXbUw4UUoRDlFRpofdtCoivKzVN7yHmR2RudX46YXhwcl2hXBmApIxRI__QufCa9LnqgIy1PDUfd45qNqX4ocZ4ZlSAz4onOcSgQqtVqYukfWooNiSAD_Ar3vvHQm1BjjU6CRiGgS81hJred5BxzH__yTsPQSNLUrMcDAONQQsRYvWbuci7NGLWH82FtCBivrlDIUAnXdeNFko1MGLUCzg64xir48Gzii5brrWG3vo8QeZewHZTgjSSW_Pd99AaQa6mHFw29RhN3SjXQr964kMBD3UlveZh7DO0fFNc9RdbTpUO_mM3ZdUo3m8ihw2-BxTJmFbkB30XM4oL_AFpHFnT5GonLV1YHqf3Est7Gg4hvO-yfex9LWKxAHwO0rCUnw1MZZcKJtEEu2ij4HIqqVBkrUr18TQWnxsn7HTXaqtRr0OuU-J8mHtgzs4zlSeZvd7mLZShaf8oVvcx6wVph7d9twAqiT1J81tvzmIiNLPBzBqtsDMvFZHoHo-zf2OPZpAii9pbacuBW5D9Kv8I0mIVIoHwnDFPcFZSfNIq3b4_z2hW3bzK96lqQnkXX3nb1mSNKLa7TCrbvgdmTmzdFuonFUL3tN354KVuzcRmaClTx1flGAaDwnRvCx9-eoqyW3LTF80Ex-7uqfVjFN6eotpapLnaUdQKePT6aXGbVIPCLyV5Npqr4UWUtAsXiqoVKwzacsMpNt9PBKI2mguo33a7_8okYrheGEtufPW0kf0oEINhOA4Dhqwp5iwVOFwpJAGshK8kikkb0icCY2xxCnpcgHh7xyGIpoClc074lMRw9pUBTZDHyWCOnx0F-gMMRgEADX0oxAMIYXfMggcJth2Uv8lQYiU1yl7KjEFW9f6f8ax4II06omt7iL4L2S-lITeFpTDpzMHiZmoUlZsejqvFMllferoAwplwawVxsxDM1lftudisHkitctnf6R_prEVt7gJM8nP9RMBCk7QerNptkyolY8GZ2bQhOvB8qYdet_Srup-BhzVgz0EuQ_xxVG3YxeqMVSJ2ly8aclAP9FhqeOtnaKVKR-7S6TKvGg2kX87ibHrTNiXkoGJeFk2arfWbYiDM5K0fJvy5WfkNxE4eSIqzQRhh3Tj_8aluVCKW4J9o1F2PTDwX-oYF8JDGbwcQZw0Vuv4h9vEOw-6abwzJFex0kKP0qU7hwQnIWETInV9N8qWIfEByMTKGCcBNIEMJBlVmk-fDbWsbS-Ox3xOVzyRUizrVZvC8Rx-3tSdjcsbCzRYLDcwyZbUdyD7p7D33T4pauRY8UJmgUtGkpq639UU9o6AKqOEcSkzXz6fSsXSYmEaVMrZEVawiKyyjO25HYrcoo_fTDeiEtfEGyvhNr9Ulm8dEDfeVvBpdZJf2eapt7Xp09xrzRlaY29fY1L-oRN4ScepIigz4j__fmm8yGuoZHXqtFLp2ZTezAU8mpy3T2W6BjxnnVCrZzkijCIDm2QpqMRtGIFDKBHu-ZrUiwLSSFIMEuJr1OAQ-twBf1HWBeV8w-nZj3C8vNhp4ZHU5_BVRzs2E-de1BcqTYyofRXV3jyXd8jHdEe_c9Wg9FjZgVm46l7QJarIat5yvDfYj9GSK4cexJCrXBw3H8UmB286I5UyF1yeT74hz5UWGY6yBpSD2lqCzMpWR93IWVzIKPdu8pVs0haVkMlePiSrYmMLmZiF3F_AX73MMTVA_igzX5BwSAlNwK7lpyEVQOpNS5YJ8SP1JujWPdHhp35Puf7itgP0TSojFAF8B2RDW-EpHqbJe-ESp9-rsuQjVfeeJtA0EoA2BNLlJmSvvzj6cwvdui0NCMSCBX4-k7mgTXLNJtDayWArZI-XeCWEb1MTCaOlhxn3UgqjK6itWnuFonDI82hezmnGAJD8qwyzBsXGC2tEP2jVUStqh8Nn_qLWXty7zuNTb8cA==
+```
 
 # Keylogging
-(Coming soon)
+This is so that the keystrokes of the bots can be monitored. This can be used to spy on what the victim is doing. Whether to be spying on a conversation(of course one-sided), or getting a password being typed into a login page, or even just them gaming(Lots of 'WASD' keystrokes).
 
-# More Optimised 
-(Coming soon)
+Example Of the Keylogging:
+```
+LOGGED KEYSTROKES FOR BOT DESKTOP-M0LGMU92
 
-# Logic From DatCord
-(Coming soon)
+[+] 'a'
+[+] 'a'
+[+] 'a'
+[+] 'a'
+[+] 'j'
+[+] 's'
+[+] 'j'
+[+] 'k'
+[+] 'l'
+[+] 's'
+[+] 'd'
+[+] 'j'
+[+] 'f'
+[+] 'l'
+[+] 's'
+[+] 'd'
+[+] 'j'
+[+] 'f'
+[+] 's'
+[+] 'j'
+[+] 'd'
+[+] 'j'
+[+] 'f'
+```
 
 # Logging 
 (Coming soon)
