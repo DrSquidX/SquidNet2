@@ -57,6 +57,7 @@ If there are any damages done by this script and are not caused by me directly, 
 * Keylogging                - The ability of keystroke logging is in the bot script, and can be activated or deactivated at will.
 * Logging                   - Everything on the server is logged(except for the passwords), including errors and connections.
 * Focusing Connections      - Focus on one bot at a time, if that is needed.
+* DoS Protection            - Server is equipped with Anti-DoS programs(not sure about DDoS), which protects the server from any script kiddies trying to attack this server.
 * More Optimised            - The script is more optimized, so that it is less likely to slow down or accumalate errors like the original.
 * Logic From DatCord        - A lot of the functions use the same logic from DatCord, so that the script is as optimized and efficient as it can be.
 
