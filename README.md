@@ -333,8 +333,22 @@ Instructions Sending from 2 Bots to Only 1:
 [(DESKTOP-BVT29KJ4)]: hello
 ```
 
+# DoS Protection
+This server has code to stop DoS Attacks, so that they do not interfere with the operation and speed of the Botnet. What it does is detect if the connections per second exceeds a certain limit for a certain amount of time. If the amount of connections per second exceeds the limit, a 2 second timer is started to then see whether to take action of the new requests. If that 2 second timer waits for 2 seconds without stopping, the Anti-DoS System begins to take action. It bans all of the incoming connections to the server, so that all of the harmful IP addresses would have their connections refused, and would thus allow the server to continue operating without and leave attackers at bay.
+
+Automatic IP Banning in Action:
+```
+[(2021-11-07 21:47:52.184777)][(ERROR)]: Closing connection with ('192.168.0.87', 53980) due to error: [WinError 10053] An established connection was aborted by the software in your host machine
+[(2021-11-07 21:47:52.185775)][(ERROR)]: Closing connection with ('192.168.0.87', 53981) due to error: [WinError 10053] An established connection was aborted by the software in your host machine
+[(2021-11-07 21:47:52.185775)][(ERROR)]: Closing connection with ('192.168.0.87', 53982) due to error: [WinError 10053] An established connection was aborted by the software in your host machine
+[(2021-11-07 21:47:52.186771)][(ERROR)]: Closing connection with ('192.168.0.87', 53983) due to error: [WinError 10053] An established connection was aborted by the software in your host machine
+[(2021-11-07 21:47:52.187768)][(ERROR)]: Closing connection with ('192.168.0.87', 53984) due to error: [WinError 10053] An established connection was aborted by the software in your host machine
+[(2021-11-07 21:47:52.353017)][(ANTI_DDOS)]: Setting 'self.auto_ban' variable to: True
+[(2021-11-07 21:47:52.588696)][(BANNING_IP)]: 192.168.0.87 attempted to join the server during the DDoS Attack, banning as a precaution.
+```
+
 # How to Use(For beginners)
-(Coming soon)
+First you should place the 'SquidNet2.py' file into whatever folder you desire to put it in, where opening the file at first will create all of the database and config files for it to operate properly. The second time you run the file you will then be able to use it. I suggest running the script in Terminal/Cmd, so that the server can run properly. Once all of the functionality of the server is ready, you can then change any of the settings inside of the config file. These settings are changable, so that you can change the IP Address or the Port the server is hosted on, as well logfile and Admin Account credentials. The encryption key for the bots can be changed, but it needs to be usable with the 'Cryptography' Module in python(do 'pip install cryptography' and you should be good). Changing the Admin accound credentials is highly recommended, as the default settings are horrendous if you want to have a proper secure account(unless you think 'adminpassword12345' is a good password). When the server is started, a payload file is generated in that same directory that the server is located in, and it will also be copied into the FTP directory(also auto-generated). You can then give that payload to whomever you have consent to use it on(the ransomware script can be pretty effective). Now it is about being able to control and use the server. You first download the 'SquidNet2Admin.py' script. You then open that script(preferably in terminal), and you can choose whether to connect to a server you've already connected to or a new one. You should choose the new one, as you have not yet connected to a server yet. You then simply enter the IP address the server is hosted on, and then the port. You are then able to operate the server and control any bots that are connected to it. You can do '!help' if you need to know the commands of the server.
 
 # Overall
 SquidNet2 is the sequel and superior version of the original SquidNet. While without some of the original commands, the functions and functionality of the new SquidNet have been improved on along with the new features added to it that help with its usability. 
