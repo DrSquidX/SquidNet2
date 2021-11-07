@@ -45,7 +45,7 @@
 The sequel to SquidNet. It has many of the previous features that were in the original script, however a lot of the functions that do not serve much functionality have been removed.
 
 # Disclaimer
-If there are any damages done by this script and are not caused by me directly, I will not be responisble for any damages caused by this script. Thank you for your understanding.
+If there are any damages done by this script and are not caused by me directly, I will not be responisble for any damages caused by this script. This script was made for educational purposes only. Thank you for your understanding.
 
 # Main Features:
 * Remote access connection  - Control the bots when they connect to the botnet.
