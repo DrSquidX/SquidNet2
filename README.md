@@ -64,7 +64,7 @@ If there are any damages done by this script and are not caused by me directly, 
 # Remote Access Connection
 This BotNet has remote access capabilites, so that Bots are able to connect to the server and be remotely controlled there. There, many of the built-in commands that the Bot script has can be run remotely. Shell commands can also be run remotely, where you simply have to input the command you want to use and it will be run on the bots. There are many things that you could do on the bots, where one of them include the ability to do DDoS Attacks. Similarly to the original SquidNet script, you can do UDP, TCP and HTTP DDoS Attacks. These will not be explained here, although in a different section they will. The SSH Botnet is not on this script, as there were many internal problems that slowed down the script if an SSH Bot were to disconnect, so I chose only to revolve around the main part of it. There are however many other functions and commands that can be run on the bots, where the possibilites are endless.
 
-Server Help Message(As Of v3.0):
+Server Help Message(As Of v5.0):
 ```
 [(SERVER)]: Info about each command:
 [+] Utilities:
