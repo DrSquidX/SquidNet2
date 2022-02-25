@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3
 import socket, threading, hashlib, os, time, sqlite3, shutil, urllib.request, json, sys, base64
 from optparse import OptionParser
 from datetime import datetime
@@ -613,7 +612,6 @@ class SquidNet:
         except Exception as e:
             transferred = False
             length = 0
-        conn.send(f"!filesize {length}".encode())
         time.sleep(2)
         while True:
             try:
@@ -626,6 +624,8 @@ class SquidNet:
                 print(e)
                 break
         if transferred:
+            time.sleep(5)
+            self.adminconn.send("!stopwrite".encode())
             time.sleep(1)
             self.send_to_other("SERVER",self.admin_username,"File Transfer completed.", conn)
     def Squidhash(self,hash):
@@ -763,19 +763,12 @@ class SquidNet:
                                                 self.send_to_other(name, self.admin_username,msg, self.adminconn)
                                             else:
                                                 try:
-                                                    if msg.startswith("!filesize"):
-                                                        filesize = int(msg.split()[1])
+                                                    if msg == "!stopwrite":
+                                                        self.send_to_other(name,self.admin_username,"File transfer to server completed.", self.adminconn)
+                                                        self.downloading = False
+                                                        self.botdownload.close()
                                                     else:
-                                                        bytesrecv += len(msg_from_bot)
-                                                        if msg.lower() != "file transfer to server completed.":
-                                                            self.botdownload.write(msg_from_bot)
-                                                        if bytesrecv >= filesize or msg.lower() == "file transfer to server completed.":
-                                                            if msg.lower() == "file transfer to server completed.":
-                                                                self.send_to_other(name,self.admin_username,"File transfer to server completed.", self.adminconn)
-                                                            bytesrecv = 0
-                                                            filesize = 0
-                                                            self.downloading = False
-                                                            self.botdownload.close()
+                                                        self.botdownload.write(msg_from_bot)
                                                 except Exception as e:
                                                     self.botdownload.write(msg_from_bot)
                                 except:
@@ -5356,8 +5349,6 @@ class Bot:
                     try:
                         file = self.get_filename(msg)
                         file = open(file, "rb")
-                        length = len(open(file.name,"rb").read())
-                        self.client.send(f"!filesize {length}".encode())
                         self.sendingfile = True
                         while True:
                             sendto = file.read(10240)
@@ -5366,11 +5357,14 @@ class Bot:
                                 break
                             else:
                                 self.client.send(sendto)
+                        time.sleep(5)
+                        self.client.send(f"!stopwrite")
                         time.sleep(1)
                         self.client.send("File transfer to server completed.".encode())
                     except:
                         length = 0
-                        self.client.send(f"!filesize {length}".encode())
+                        time.sleep(5)
+                        self.client.send(f"!stopwrite".encode())
                         time.sleep(1)
                         self.client.send("File was not found in the bot directory.".encode())
                 elif msg.startswith("!download"):
@@ -5667,6 +5661,7 @@ Examples:
     - Readded older features from the original SquidNet(old commands, web interface, etc.)
     - Added developer notes in the source code
     - Made things a little more professional looking
+    - Fixed FTP Functionaility(back to the old style)
 
 [+] Read the github README or read the developer notes for more information.
         """)
