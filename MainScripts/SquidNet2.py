@@ -5434,7 +5434,7 @@ class AutoUpdate:
     script will be completely wiped, and replaced with the new one.
     """
     def __init__(self):
-        self.version = 5.1
+        self.version = 5.0
     def check_update(self):
         """Sends the request to the github repository, and checks to see if the script needs and update."""
         print(SquidNet.logo.fget())
